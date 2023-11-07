@@ -1,0 +1,43 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  background: teal;
+  color: #000000;
+  font-family: "Pixelated MS Sans Serif", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Windows 95 button styles */
+button {
+  background: #000080; /* Deep blue */
+  color: white;
+  border: 2px outset buttonface;
+}
+
+input,
+textarea {
+  background: #ffffff;
+  border: 2px inset buttonface;
+  color: #000000;
+}
+
+.container {
+  background: #c0c0c0;
+  border: 2px outset buttonface;
+  box-shadow: -4px 4px 2px -2px #888888;
+}
+
+@font-face {
+  font-family: "Pixelated MS Sans Serif";
+  src: url("/ms-sans-serif-1.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
