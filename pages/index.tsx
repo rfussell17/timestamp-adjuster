@@ -47,54 +47,68 @@ const Home: React.FC = () => {
   };
 
   return (
-    <div className="container mx-auto p-4">
-      <h1 className="">Timestamp Fixxr</h1>
-      <div className="mb-6">
-        <label
-          htmlFor="timeInput"
-          className="block text-sm font-medium text-gray-700 mb-2"
+    <div className="flex flex-col h-screen">
+      <header className="text-4xl text-center p-12 bg-teal">
+        Timestamp Fixxr &apos;95
+      </header>
+
+      <main className="flex-grow container mx-auto p-10 space-y-6">
+        <div className="mb-6">
+          <label
+            htmlFor="timeInput"
+            className="block text-sm font-medium text-gray-700 mb-2"
+          >
+            Time to Add (HH:MM:SS)
+          </label>
+          <input
+            id="timeInput"
+            type="text"
+            value={formState.additionalTime}
+            onChange={(e) =>
+              setFormState({ ...formState, additionalTime: e.target.value })
+            }
+            className="border-gray-300 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-2 p-2 rounded-md"
+            placeholder="00:02:30"
+          />
+        </div>
+
+        <div className="mb-6">
+          <label
+            htmlFor="timestampsInput"
+            className="block text-sm font-medium text-gray-700 mb-2"
+          >
+            Timestamps
+          </label>
+          <textarea
+            id="timestampsInput"
+            value={formState.showNotes}
+            onChange={(e) =>
+              setFormState({ ...formState, showNotes: e.target.value })
+            }
+            className="resize-none border-gray-300 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-2 p-2 rounded-md"
+            rows={10}
+            placeholder="(00:00:00) - Intro"
+          ></textarea>
+        </div>
+
+        <button
+          onClick={adjustTimestamps}
+          className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
         >
-          Time to Add (HH:MM:SS)
-        </label>
-        <input
-          id="timeInput"
-          type="text"
-          value={formState.additionalTime}
-          onChange={(e) =>
-            setFormState({ ...formState, additionalTime: e.target.value })
-          }
-          className="border-gray-300 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-2 p-2 rounded-md"
-          placeholder="00:02:30"
-        />
-      </div>
-      <div className="mb-6">
-        <label
-          htmlFor="timestampsInput"
-          className="block text-sm font-medium text-gray-700 mb-2"
-        ></label>
-        <textarea
-          id="timestampsInput"
-          value={formState.showNotes}
-          onChange={(e) =>
-            setFormState({ ...formState, showNotes: e.target.value })
-          }
-          className="border-gray-300 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-2 p-2 rounded-md"
-          rows={10}
-          placeholder="(00:00:00) - Intro"
-        ></textarea>
-      </div>
-      <button
-        onClick={adjustTimestamps}
-        className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-      >
-        Adjust Timestamps
-      </button>
-      <div
-        id="result"
-        className="border-gray-300 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-2 p-2 rounded-md mt-6 h-64 overflow-auto"
-      >
-        <pre className="whitespace-pre-wrap">{formState.adjustedShowNotes}</pre>
-      </div>
+          Adjust Timestamps
+        </button>
+
+        <div
+          id="result"
+          className="border-gray-300 focus:ring-indigo-500 focus:border-indigo-500 block w-full  sm:text-sm  p-2 rounded-md mt-6 h-50 overflow-auto"
+        >
+          <pre className="whitespace-pre-wrap">
+            {formState.adjustedShowNotes}
+          </pre>
+        </div>
+      </main>
+
+      <footer className="bg-teal text-center p-4">Made with ♥ by TPC</footer>
     </div>
   );
 };

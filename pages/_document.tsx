@@ -4,10 +4,7 @@ class MyDocument extends Document {
   render() {
     return (
       <Html lang="en">
-        <Head>
-          {/* If using a Google Font or other external resource */}
-          {/* <link href="https://external-font-url" rel="stylesheet" /> */}
-        </Head>
+        <Head></Head>
         <body>
           <Main />
           <NextScript />
