@@ -8,6 +8,10 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      colors: {
+        "deep-blue": "#020480",
+        "cool-gray": "#c0c0c0;",
+      },
       fontFamily: {
         sans: ["Pixelated MS Sans Serif", "Arial", "sans-serif"],
       },
