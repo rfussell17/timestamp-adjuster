@@ -36,6 +36,19 @@ textarea {
   width: 70%;
 }
 
+.output-content a {
+  color: blue;
+  text-decoration: underline;
+}
+
+.output-content b, .output-content strong {
+  font-weight: bold;
+}
+
+
+
+
+
 @font-face {
   font-family: "Pixelated MS Sans Serif";
   src: url("/ms-sans-serif-1.woff") format("woff");

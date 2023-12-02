@@ -6,25 +6,37 @@ export class TimestampAdjuster {
       ? TimeUtil.parseTimeWithZeros(additionalTime)
       : TimeUtil.parseTimeWithoutZeros(additionalTime);
 
-    const lines = notes.split("\n");
-    const adjustedLines = lines.map((line) => {
-      const regex = formatWithLeadingZeros ? /\((\d{2}:\d{2}:\d{2})\)/ : /(\d{1,2}:\d{2}:\d{2}|\d{1,2}:\d{2})/;
-      const match = line.match(regex);
+    return notes.split("\n").map(line => {
+      if (formatWithLeadingZeros) {
+        const regex = /\(\d{2}:\d{2}:\d{2}\)/g;
+        const parts = line.split(regex);
 
-      if (match && match[1]) {
-        const currentSeconds = formatWithLeadingZeros
-          ? TimeUtil.parseTimeWithZeros(match[1])
-          : TimeUtil.parseTimeWithoutZeros(match[1]);
-        const adjustedSeconds = addTime ? currentSeconds + additionalSeconds : currentSeconds - additionalSeconds;
-        const adjustedTime = formatWithLeadingZeros
-          ? TimeUtil.formatWithZeros(adjustedSeconds)
-          : TimeUtil.formatWithoutZeros(adjustedSeconds);
-        return line.replace(match[0], formatWithLeadingZeros ? `(${adjustedTime})` : adjustedTime);
+        // If no timestamps are found, return the line as is
+        if (parts.length === 1) return line;
+
+        return parts.reduce((acc, part, index) => {
+          if (index === parts.length - 1) return acc + part; // Last part, no timestamp follows
+
+          const match = regex.exec(line);
+          if (!match) return acc + part; // If no match is found, just return the accumulated parts
+
+          const timestamp = match[0];
+          const cleanTimestamp = timestamp.replace(/[()]/g, ''); // Remove parentheses for parsing
+          const currentSeconds = TimeUtil.parseTimeWithZeros(cleanTimestamp);
+          const adjustedSeconds = addTime ? currentSeconds + additionalSeconds : currentSeconds - additionalSeconds;
+          const adjustedTime = TimeUtil.formatWithZeros(adjustedSeconds);
+
+          return acc + part + `(${adjustedTime})`;
+        }, '');
+      } else {
+        const regex = /(\d{1,2}:\d{2}(:\d{2})?)/g;
+        return line.replace(regex, (match, p1) => {
+          const currentSeconds = TimeUtil.parseTimeWithoutZeros(p1);
+          const adjustedSeconds = addTime ? currentSeconds + additionalSeconds : currentSeconds - additionalSeconds;
+          const adjustedTime = TimeUtil.formatWithoutZeros(adjustedSeconds);
+          return adjustedTime;
+        });
       }
-
-      return line;
-    });
-
-    return adjustedLines.join("\n");
+    }).join("\n");
   }
 }

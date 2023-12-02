@@ -7,7 +7,7 @@ type TextAreaInputProps = {
     <div className="mb-6">
       <label
         htmlFor="timestampsInput"
-        className="block text-sm font-medium text-gray-700 mb-2"
+        className="block text-gray-700 mb-2"
       >
         Timestamps
       </label>

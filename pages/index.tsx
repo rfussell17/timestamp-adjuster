@@ -1,11 +1,17 @@
-// Home.tsx
+import React from 'react';
+import dynamic from 'next/dynamic';
 import { useReducer } from "react";
-import { TimestampAdjuster } from "../utils/timestamp-adjuster";
+import { reducer, initialState } from '../reducers/home-reducer';
 import { TimeInput } from '../components/time-input';
-import { TextAreaInput } from '../components/text-area-input';
 import { AdjustTimestampsButton } from '../components/adjust-stamps-button';
 import Toggle from '../components/toggle';
-import { reducer, initialState } from '../reducers/home-reducer';
+import { TimestampAdjuster } from "../utils/timestamp-adjuster";
+
+// Dynamically import RichTextEditor with SSR disabled
+const RichTextEditor = dynamic(
+  () => import('../utils/rich-text-editor'),
+  { ssr: false }
+);
 
 const Home: React.FC = () => {
   const [formState, dispatch] = useReducer(reducer, initialState);
@@ -46,14 +52,16 @@ const Home: React.FC = () => {
           mode={formState.addTime ? 'add' : 'subtract'}
           withLeadingZeros={formState.formatWithLeadingZeros}
         />
-        <TextAreaInput
+        <RichTextEditor
           value={formState.showNotes}
           onChange={handleShowNotesChange}
         />
         <AdjustTimestampsButton onClick={handleAdjustTimestamps} />
-        <div id="result" className="border-gray-300 focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm p-2 rounded-md mt-6 h-50 overflow-auto">
-          <pre className="whitespace-pre-wrap">{formState.adjustedShowNotes}</pre>
-        </div>
+        <div 
+        
+          dangerouslySetInnerHTML={{ __html: formState.adjustedShowNotes }} 
+          className="output-content" style={{ backgroundColor: 'white',padding:'1rem', borderRadius:'7px' }}
+        />
       </main>
       <footer className="bg-teal text-center p-4">Made with ♥ by TPC</footer>
     </div>
