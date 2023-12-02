@@ -11,6 +11,7 @@ const config: Config = {
       colors: {
         "deep-blue": "#020480",
         "cool-gray": "#c0c0c0;",
+        "indigo-600": "#020480"
       },
       fontFamily: {
         sans: ["Pixelated MS Sans Serif", "Arial", "sans-serif"],
