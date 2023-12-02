@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { TimestampAdjuster } from "../utils/timestamp-adjuster";
-import { TimeInput } from '../components/time-input'
+import { TimeInput } from '../components/time-input';
 import { TextAreaInput } from '../components/text-area-input';
 import { AdjustTimestampsButton } from '../components/adjust-stamps-button';
+import Toggle from '../components/toggle'; 
 
 type FormState = {
   additionalTime: string;
@@ -17,10 +18,13 @@ const Home: React.FC = () => {
     adjustedShowNotes: "",
   });
 
+  const [addTime, setAddTime] = useState<boolean>(true); // State for adding or subtracting time
+
   const adjustTimestamps = (): void => {
     const adjustedNotes = TimestampAdjuster.adjustTimestamps(
       formState.showNotes,
-      formState.additionalTime
+      formState.additionalTime,
+      addTime // Pass the addTime state to adjustTimestamps
     );
     setFormState({ ...formState, adjustedShowNotes: adjustedNotes });
   };
@@ -32,16 +36,23 @@ const Home: React.FC = () => {
       </header>
 
       <main className="flex-grow container mx-auto p-10 space-y-6">
-      <TimeInput
+        <Toggle
+          enabled={addTime}
+          onChange={() => setAddTime(!addTime)}
+          label="Toggle Add/Subtract"
+        />
+
+<TimeInput
   value={formState.additionalTime}
   onChange={(newTime) => setFormState(prevState => ({ ...prevState, additionalTime: newTime }))}
+  mode={addTime ? 'add' : 'subtract'} 
 />
 
-<TextAreaInput
-  value={formState.showNotes}
-  onChange={(newNotes) => setFormState(prevState => ({ ...prevState, showNotes: newNotes }))}
-/>
 
+        <TextAreaInput
+          value={formState.showNotes}
+          onChange={(newNotes) => setFormState(prevState => ({ ...prevState, showNotes: newNotes }))}
+        />
 
         <AdjustTimestampsButton onClick={adjustTimestamps} />
 

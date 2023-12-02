@@ -3,7 +3,7 @@ type TextAreaInputProps = {
     onChange: (value: string) => void;
   };
   
- export const TextAreaInput: React.FC<TextAreaInputProps> = ({ value, onChange }) => (
+  export const TextAreaInput: React.FC<TextAreaInputProps> = ({ value, onChange }) => (
     <div className="mb-6">
       <label
         htmlFor="timestampsInput"
@@ -21,4 +21,3 @@ type TextAreaInputProps = {
       ></textarea>
     </div>
   );
-  
