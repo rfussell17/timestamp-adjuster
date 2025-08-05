@@ -1,12 +1,18 @@
+import React from 'react';
+
 type AdjustTimestampsButtonProps = {
-    onClick: () => void;
-  };
-  
-  export const AdjustTimestampsButton: React.FC<AdjustTimestampsButtonProps> = ({ onClick }) => (
+  onClick: () => void;
+};
+
+export const AdjustTimestampsButton: React.FC<AdjustTimestampsButtonProps> = ({ onClick }) => (
+  <div className="win95-center">
     <button
       onClick={onClick}
-      className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-deep-blue hover:bg-deeper-blue focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+      className="win95-button"
+      style={{ padding: '8px 24px', fontSize: '14px' }}
     >
-      Adjust Timestamps
+      ⚡ Adjust Timestamps
     </button>
-  );
+  </div>
+);
+

@@ -8,33 +8,29 @@ export class TimestampAdjuster {
 
     return notes.split("\n").map(line => {
       if (formatWithLeadingZeros) {
-        const regex = /\(\d{2}:\d{2}:\d{2}\)/g;
-        const parts = line.split(regex);
-
-        // If no timestamps are found, return the line as is
-        if (parts.length === 1) return line;
-
-        return parts.reduce((acc, part, index) => {
-          if (index === parts.length - 1) return acc + part; // Last part, no timestamp follows
-
-          const match = regex.exec(line);
-          if (!match) return acc + part; // If no match is found, just return the accumulated parts
-
-          const timestamp = match[0];
-          const cleanTimestamp = timestamp.replace(/[()]/g, ''); // Remove parentheses for parsing
-          const currentSeconds = TimeUtil.parseTimeWithZeros(cleanTimestamp);
+        // Look for timestamps in format with any brackets: (HH:MM:SS), [HH:MM:SS], {HH:MM:SS}
+        const regex = /([(\[{])(\d{2}:\d{2}:\d{2})([)\]}])/g;
+        return line.replace(regex, (match, openBracket, timestamp, closeBracket) => {
+          const currentSeconds = TimeUtil.parseTimeWithZeros(timestamp);
           const adjustedSeconds = addTime ? currentSeconds + additionalSeconds : currentSeconds - additionalSeconds;
-          const adjustedTime = TimeUtil.formatWithZeros(adjustedSeconds);
-
-          return acc + part + `(${adjustedTime})`;
-        }, '');
+          const adjustedTime = TimeUtil.formatWithZeros(Math.max(0, adjustedSeconds));
+          return `${openBracket}${adjustedTime}${closeBracket}`; // Keep original bracket type
+        });
       } else {
-        const regex = /(\d{1,2}:\d{2}(:\d{2})?)/g;
-        return line.replace(regex, (match, p1) => {
-          const currentSeconds = TimeUtil.parseTimeWithoutZeros(p1);
+        // Look for timestamps with any brackets or without brackets
+        const regex = /(?:([(\[{])(\d{1,2}:\d{2}(?::\d{2})?)([)\]}])|\b(\d{1,2}:\d{2}(?::\d{2})?)\b)/g;
+        return line.replace(regex, (match, openBracket, bracketedTimestamp, closeBracket, unbracketedTimestamp) => {
+          const timestamp = bracketedTimestamp || unbracketedTimestamp;
+          const currentSeconds = TimeUtil.parseTimeWithoutZeros(timestamp);
           const adjustedSeconds = addTime ? currentSeconds + additionalSeconds : currentSeconds - additionalSeconds;
-          const adjustedTime = TimeUtil.formatWithoutZeros(adjustedSeconds);
-          return adjustedTime;
+          const adjustedTime = TimeUtil.formatWithoutZeros(Math.max(0, adjustedSeconds));
+          
+          // If it had brackets, keep them; if not, return without brackets
+          if (openBracket && closeBracket) {
+            return `${openBracket}${adjustedTime}${closeBracket}`;
+          } else {
+            return adjustedTime;
+          }
         });
       }
     }).join("\n");

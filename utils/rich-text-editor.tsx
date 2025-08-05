@@ -30,12 +30,21 @@ const RichTextEditor: React.FC<RichTextEditorProps> = ({ value, onChange }) => {
   ];
 
   return (
-    <ReactQuill 
-      value={value}
-      onChange={handleChange}
-      modules={modules}
-      formats={formats}
-    />
+    <div style={{ height: '100%' }}>
+      <ReactQuill 
+        value={value}
+        onChange={handleChange}
+        modules={modules}
+        formats={formats}
+        placeholder={`Paste your show notes with timestamps here...
+
+Example:
+(00:00:00) - Intro
+(00:02:30) - Main topic discussion
+(00:15:45) - Guest interview`}
+        style={{ height: '200px' }}
+      />
+    </div>
   );
 };
 

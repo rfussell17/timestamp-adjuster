@@ -2,6 +2,412 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Windows 95 Desktop Background */
+.win95-desktop {
+  background: linear-gradient(45deg, #008080 0%, #c0c0c0 100%);
+  font-family: "MS Sans Serif", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 14px;
+  min-height: 100vh;
+}
+
+/* Windows 95 Window */
+.win95-window {
+  background: #c0c0c0;
+  border-top: 2px solid #dfdfdf;
+  border-left: 2px solid #dfdfdf;
+  border-right: 2px solid #808080;
+  border-bottom: 2px solid #808080;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
+  margin: 0 16px 0 16px;
+}
+
+/* Title Bar */
+.win95-titlebar {
+  background: linear-gradient(90deg, #000080 0%, #0000ff 100%);
+  color: white;
+  padding: 4px 8px;
+  display: flex;
+  align-items: center;
+  font-size: 11px;
+  font-weight: bold;
+}
+
+.win95-titlebar-icon {
+  width: 16px;
+  height: 16px;
+  background: white;
+  color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 8px;
+  font-size: 14px;
+}
+
+.win95-titlebar-text {
+  flex: 1;
+}
+
+/* Title Content Area */
+.win95-title-content {
+  padding: 24px;
+  background: #c0c0c0;
+}
+
+.win95-title-content h1 {
+  font-size: 18px;
+  font-weight: bold;
+  color: black;
+  margin: 0 0 8px 0;
+}
+
+.win95-title-content p {
+  font-size: 14px;
+  color: #333;
+  margin: 0;
+}
+
+/* Panels */
+.win95-panel {
+  background: #c0c0c0;
+  border-top: 2px solid #dfdfdf;
+  border-left: 2px solid #dfdfdf;
+  border-right: 2px solid #808080;
+  border-bottom: 2px solid #808080;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  margin: 16px;
+}
+
+.win95-panel-header {
+  background: #c0c0c0;
+  padding: 4px 12px;
+  border-bottom: 1px solid #808080;
+  font-size: 12px;
+  font-weight: bold;
+  color: black;
+}
+
+.win95-panel-content {
+  padding: 16px;
+  background: #c0c0c0;
+}
+
+/* Form Groups */
+.win95-form-group {
+  background: white;
+  border-top: 2px solid #808080;
+  border-left: 2px solid #808080;
+  border-right: 2px solid #dfdfdf;
+  border-bottom: 2px solid #dfdfdf;
+  padding: 12px;
+  margin-bottom: 16px;
+}
+
+.win95-label {
+  display: block;
+  font-size: 11px;
+  font-weight: bold;
+  color: black;
+  margin-bottom: 6px;
+  font-family: "MS Sans Serif", sans-serif;
+}
+
+/* Form Inputs */
+.win95-input,
+.win95-select,
+.win95-textarea {
+  padding: 2px 4px;
+  border-top: 2px solid #808080;
+  border-left: 2px solid #808080;
+  border-right: 2px solid #dfdfdf;
+  border-bottom: 2px solid #dfdfdf;
+  background: white;
+  color: black;
+  font-size: 14px;
+  font-family: "MS Sans Serif", sans-serif;
+}
+
+.win95-input-full,
+.win95-select-full,
+.win95-textarea-full {
+  width: 100%;
+}
+
+.win95-input {
+  width: auto;
+  min-width: 120px;
+}
+
+.win95-select {
+  width: auto;
+  min-width: 200px;
+}
+
+.win95-textarea {
+  resize: none;
+  font-family: "Courier New", monospace;
+  font-size: 14px;
+  width: 100%;
+}
+
+.win95-textarea-mono {
+  font-family: "Courier New", monospace;
+  font-size: 14px;
+  width: 100%;
+}
+
+/* Field containers */
+.win95-field {
+  margin-bottom: 12px;
+}
+
+.win95-field-inline {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.win95-field-inline .win95-label {
+  margin-bottom: 0;
+  min-width: 80px;
+  flex-shrink: 0;
+}
+
+/* Buttons */
+.win95-button {
+  padding: 6px 16px;
+  font-size: 12px;
+  font-weight: bold;
+  font-family: "MS Sans Serif", sans-serif;
+  border-top: 2px solid #dfdfdf;
+  border-left: 2px solid #dfdfdf;
+  border-right: 2px solid #808080;
+  border-bottom: 2px solid #808080;
+  background: #c0c0c0;
+  color: black;
+  cursor: pointer;
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.win95-button:hover {
+  background: #d0d0d0;
+}
+
+.win95-button:active {
+  border-top: 2px solid #808080;
+  border-left: 2px solid #808080;
+  border-right: 2px solid #dfdfdf;
+  border-bottom: 2px solid #dfdfdf;
+  background: #b0b0b0;
+}
+
+.win95-button:disabled {
+  background: #a0a0a0;
+  color: #666;
+  cursor: not-allowed;
+}
+
+.win95-button-success {
+  background: #90ee90;
+}
+
+.win95-button-success:hover {
+  background: #a0ffa0;
+}
+
+.win95-button-purple {
+  background: #dda0dd;
+}
+
+.win95-button-purple:hover {
+  background: #e0b0e0;
+}
+
+/* Output Areas */
+.win95-output {
+  background: white;
+  border-top: 2px solid #808080;
+  border-left: 2px solid #808080;
+  border-right: 2px solid #dfdfdf;
+  border-bottom: 2px solid #dfdfdf;
+  padding: 12px;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.win95-output-text {
+  font-family: "Courier New", monospace;
+  font-size: 14px;
+  white-space: pre-wrap;
+  color: black;
+  line-height: 1.2;
+}
+
+/* Status Bar */
+.win95-statusbar {
+  background: #c0c0c0;
+  border-top: 2px solid #dfdfdf;
+  border-left: 2px solid #dfdfdf;
+  border-right: 2px solid #808080;
+  border-bottom: 2px solid #808080;
+  padding: 4px 8px;
+  font-size: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 16px;
+}
+
+/* Combined Status Footer */
+.win95-status-footer {
+  background: #c0c0c0;
+  border-top: 2px solid #dfdfdf;
+  border-left: 2px solid #dfdfdf;
+  border-right: 2px solid #808080;
+  border-bottom: 2px solid #808080;
+  margin: 16px;
+  margin-top: 0px;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.win95-status-footer-top {
+  padding: 8px 12px;
+  font-size: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #c0c0c0;
+}
+
+/* Error Box */
+.win95-error {
+  background: #ffcccc;
+  border-top: 2px solid #ff9999;
+  border-left: 2px solid #ff9999;
+  border-right: 2px solid #cc0000;
+  border-bottom: 2px solid #cc0000;
+  margin: 24px 60px 24px 60px;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.win95-error-header {
+  background: #cc0000;
+  color: white;
+  padding: 4px 8px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.win95-error-content {
+  padding: 12px;
+}
+
+.win95-error-list {
+  color: #cc0000;
+  font-size: 14px;
+  margin: 0;
+  padding-left: 16px;
+}
+
+/* Transcript Area */
+.win95-transcript-container {
+  background: white;
+  border-top: 2px solid #808080;
+  border-left: 2px solid #808080;
+  border-right: 2px solid #dfdfdf;
+  border-bottom: 2px solid #dfdfdf;
+  padding: 12px;
+  height: 300px;
+}
+
+.win95-transcript-textarea {
+  width: 100%;
+  height: 100%;
+  border: none;
+  padding: 8px;
+  font-family: "Courier New", monospace;
+  font-size: 14px;
+  resize: none;
+  background: white;
+  color: black;
+}
+
+.win95-transcript-textarea:focus {
+  outline: none;
+}
+
+/* Grid Layout */
+.win95-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-bottom: 16px;
+}
+
+.win95-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .win95-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .win95-form-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 16px;
+  height: 16px;
+}
+
+::-webkit-scrollbar-track {
+  background: #c0c0c0;
+  border-top: 1px solid #808080;
+  border-left: 1px solid #808080;
+  border-right: 1px solid #dfdfdf;
+  border-bottom: 1px solid #dfdfdf;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c0c0c0;
+  border-top: 1px solid #dfdfdf;
+  border-left: 1px solid #dfdfdf;
+  border-right: 1px solid #808080;
+  border-bottom: 1px solid #808080;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #d0d0d0;
+}
+
+::-webkit-scrollbar-corner {
+  background: #c0c0c0;
+}
+
+/* Center content */
+.win95-center {
+  text-align: center;
+  margin: 16px 0;
+}
+
+/* Header flex */
+.win95-header-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Legacy styles for existing classes */
 html,
 body {
   padding: 0;
@@ -13,20 +419,6 @@ body {
 
 * {
   box-sizing: border-box;
-}
-
-/* Windows 95 button styles */
-button {
-  background: #000080; /* Deep blue */
-  color: white;
-  border: 2px outset buttonface;
-}
-
-input,
-textarea {
-  background: #ffffff;
-  border: 2px inset buttonface;
-  color: #000000;
 }
 
 .container {
@@ -45,13 +437,46 @@ textarea {
   font-weight: bold;
 }
 
-
-
-
-
 @font-face {
   font-family: "Pixelated MS Sans Serif";
   src: url("/ms-sans-serif-1.woff") format("woff");
   font-weight: normal;
   font-style: normal;
+}
+
+/* ReactQuill container fixes */
+.win95-transcript-container .ql-container {
+  height: 150px !important;
+  overflow-y: auto;
+  font-family: "Courier New", monospace !important;
+  font-size: 14px !important;
+}
+
+.win95-transcript-container .ql-editor {
+  height: 150px !important;
+  overflow-y: auto;
+  padding: 8px !important;
+  font-family: "Courier New", monospace !important;
+  font-size: 14px !important;
+  line-height: 1.4 !important;
+}
+
+.win95-transcript-container .ql-toolbar {
+  border-top: 2px solid #808080 !important;
+  border-left: 2px solid #808080 !important;
+  border-right: 2px solid #dfdfdf !important;
+  border-bottom: 1px solid #808080 !important;
+  background: #c0c0c0 !important;
+  font-size: 14px !important;
+}
+
+.win95-transcript-container .ql-snow .ql-tooltip {
+  z-index: 1000;
+}
+
+/* Ensure button isn't covered */
+.win95-center {
+  position: relative;
+  z-index: 10;
+  margin-top: 20px;
 }
