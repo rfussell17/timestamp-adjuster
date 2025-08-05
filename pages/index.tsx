@@ -146,7 +146,7 @@ const Home: React.FC = () => {
               Ready | Mode: {formState.addTime ? 'Add +' : 'Sub -'} | 
               Format: {formState.formatWithLeadingZeros ? 'HH:MM:SS' : 'MM:SS'}
             </span>
-            <span>Made with ♥ by TPC</span>
+
           </div>
         </div>
       </div>
