@@ -51,7 +51,7 @@ const Home: React.FC = () => {
           <div className="win95-titlebar">
             <div className="win95-titlebar-icon">⏰</div>
 <span className="win95-titlebar-text">
-  Timestamp Fixxr &apos;95 v1.0 - [Running]
+  Timestamp Fixxr &apos;95 v2.0 - [Running]
 </span>
           </div>
 
